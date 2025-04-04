@@ -132,7 +132,6 @@ def scrape_data(start_date, end_date,captcha_time):
 
             next_button = driver.find_elements(By.XPATH, f'//*[@id="content"]/div[1]/div[9]/div/div/div[4]/div/div[2]/ul/li[{page}]')
             if next_button:
-                pass
                 next_button[0].click()
                 time.sleep(5)
             else:

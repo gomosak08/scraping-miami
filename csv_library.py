@@ -55,7 +55,9 @@ def create_db():
             ['name_pdf', 'owner', 'lien_type', 'addresses', 'unpaid_amount', 'name']
         - Saves the empty DataFrame to the newly created file.
     """
-    directory = "/home/gomosak/scraping/scrapeo/data/"
+    cwd = os.getcwd()
+    directory = f'{cwd}/data/'
+
     
     # Ensure the directory exists
     os.makedirs(directory, exist_ok=True)

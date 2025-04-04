@@ -5,7 +5,7 @@ import logging
 import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
+route = os.getcwd()
 pdfs = find_files("pdf", "pdf")
 
 def extract_information(text):
@@ -87,13 +87,13 @@ for pdf in pdfs:
     try:
         logging.info(f"Processing PDF: {pdf}")
         extract_images_from_pdf(pdf)
-        img = find_files("/home/gomosak/scraping/tmp", "png")
+        img = find_files(f"{route}/tmp", "png")
         text = ""
         for image in img:
             t = extract_document_details_without_saving(image)
             text += t
         info = extract_information(text)
-        delete_png_files("/home/gomosak/scraping/tmp")
+        delete_png_files(f"{route}/tmp")
 
         info['pdf_name'] = pdf
         try:
