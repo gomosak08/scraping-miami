@@ -1,8 +1,6 @@
 pdf/*
-data/*
 x/*
 tmp/*
 !pdf/.gitkeep
-!data/.gitkeep
 !tmp/.gitkeep
 !x/.gitkeep
