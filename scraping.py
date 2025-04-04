@@ -8,10 +8,10 @@ import base64
 import json
 import time
 from csv_library import add_registers_to_csv
-from create_csv_db import create_db
+from create_csv_db import create_database_if_not_exists
 import os
 
-# Initialize WebDriver with Selenium-Wire
+
 def initialize_driver():
     """
     Initializes the Selenium WebDriver with necessary options.
@@ -145,7 +145,7 @@ def scrape_data(start_date, end_date,captcha_time):
 
 if __name__ == "__main__":
     if not os.path.exists('data/db.csv'):
-        create_db()
+        create_database_if_not_exists()
 
     star_date = input("Ingresa la fecha de inicio en el formato mm/dd/yyyy: ")
     end_date = input("Ingresa la fecha de fin en el formato mm/dd/yyyy: ")
