@@ -98,7 +98,6 @@ def extract_document_details_without_saving(image_path, config='--psm 6', lang='
 
     return text
 
-import pandas as pd
 
 def get_first_second_party(file_path, name):
     """
@@ -126,15 +125,17 @@ def get_first_second_party(file_path, name):
     except FileNotFoundError:
         raise ValueError("File does not exist.")
 
-    # Find the row where 'pdf_name' matches the provided 'name'
+
+
     if name in df['pdf_name'].values:
         row = df.loc[df['pdf_name'] == name]
-
+        print(row)
         # Ensure the row is not empty and contains the required columns
         if not row.empty and {'FirstParty', 'SecondParty'}.issubset(row.columns):
             first_party = row['FirstParty'].iloc[0]  # Get the first instance of 'FirstParty'
             second_party = row['SecondParty'].iloc[0]  # Get the first instance of 'SecondParty'
-            return first_party, second_party
+            id = row['Clerks_File_No'].iloc[0]
+            return first_party, second_party, id
         else:
             raise ValueError("Required columns are missing or no data found for the specified PDF.")
     else:

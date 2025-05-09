@@ -7,6 +7,8 @@ import os
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 route = os.getcwd()
 pdfs = find_files("pdf", "pdf")
+db = pd.read_csv(f'{route}/db.csv')
+
 
 def extract_information(text):
     logging.info("Extracting information from text.")
@@ -97,10 +99,11 @@ for pdf in pdfs:
 
         info['pdf_name'] = pdf
         try:
-            first, second = get_first_second_party("/home/gomosak/scraping/db.csv", pdf.split("/")[-1])
-            if first and second:  # Only add to info if both are not None
+            first, second, id = get_first_second_party(f'{route}/db.csv', pdf.split("/")[-1])
+            if first and second and id:
                 info['FirstParty'] = first
                 info['SecondParty'] = second
+                info['Clerks_File_No'] = id
         except ValueError as e:
             print(f"Error retrieving party information: {e}")
 
