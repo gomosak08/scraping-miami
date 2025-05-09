@@ -130,9 +130,9 @@ def scrape_data(start_date, end_date,captcha_time):
                 driver.close()
                 driver.switch_to.window(driver.window_handles[0])
 
-            next_button = driver.find_elements(By.XPATH, f'//*[@id="content"]/div[1]/div[9]/div/div/div[4]/div/div[2]/ul/li[{page}]')
+            next_button = driver.find_element(By.XPATH, f'//ul[contains(@class, "pagination")]/li/a[text()="{page}"]')
             if next_button:
-                next_button[0].click()
+                next_button.click()
                 time.sleep(5)
             else:
                 break
